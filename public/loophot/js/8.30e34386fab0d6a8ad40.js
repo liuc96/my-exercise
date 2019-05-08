@@ -76,7 +76,7 @@ webpackJsonp([8], {
                 : this.$message({ type: 'warning', message: '请输入密码' })
               : this.$message({
                 type: 'error',
-                message: '请输入正确的手机号'
+                message: '请输入正确的手机号11'
               })
           },
           getAuthCode: function () {
@@ -104,7 +104,7 @@ webpackJsonp([8], {
                 .catch(function (t) {})
               : this.$message({
                 type: 'error',
-                message: '请输入正确的手机号'
+                message: '请输入正确的手机号11'
               })
           },
           textLogin: function () {
@@ -150,7 +150,7 @@ webpackJsonp([8], {
                 : this.$message({ type: 'warning', message: '请输入验证码' })
               : this.$message({
                 type: 'error',
-                message: '请输入正确的手机号'
+                message: '请输入正确的手机号11'
               })
           },
           linkToConsole: function () {

@@ -52,7 +52,7 @@ router.post('/doEdit',tools.multer().single('site_logo'),async (ctx)=>{
     }
 
     await  DB.update('setting',{},json);
-    ctx.redirect(ctx.state.__HOST__+'/admin/setting');
+    ctx.redirect(ctx.state.__HOST__+'/koa2/admin/setting');
 
 })
 

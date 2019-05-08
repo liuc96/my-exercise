@@ -51,18 +51,18 @@ router.post('/doLogin', async (ctx) => {
         last_time: new Date()
       })
 
-      ctx.redirect(ctx.state.__HOST__ + '/admin')
+      ctx.redirect(ctx.state.__HOST__ + '/koa2/admin')
     } else {
       // console.log('失败');
       ctx.render('admin/error', {
         message: '用户名或者密码错误',
-        redirect: ctx.state.__HOST__ + '/admin/login'
+        redirect: ctx.state.__HOST__ + '/koa2/admin/login'
       })
     }
   } else {
     ctx.render('admin/error', {
       message: '验证码失败',
-      redirect: ctx.state.__HOST__ + '/admin/login'
+      redirect: ctx.state.__HOST__ + '/koa2/admin/login'
     })
   }
 })
@@ -98,7 +98,7 @@ router.get('/code', async (ctx) => {
 
 router.get('/loginOut', async (ctx) => {
   ctx.session.userinfo = null
-  ctx.redirect(ctx.state.__HOST__ + '/admin/login')
+  ctx.redirect(ctx.state.__HOST__ + '/koa2/admin/login')
 })
 
 module.exports = router.routes()

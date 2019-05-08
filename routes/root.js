@@ -8,12 +8,11 @@ router.use(async (ctx, next) => {
 
   // 模板引擎配置全局的变量
   ctx.state.pathname = pathname
-
   await next()
 })
 
 router.get('/', async (ctx) => {
-  ctx.render('loophot/index', {
+  ctx.render('index/index', {
   })
 })
 

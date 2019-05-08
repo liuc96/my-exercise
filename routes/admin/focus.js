@@ -68,7 +68,7 @@ router.post('/doAdd',tools.multer().single('pic'),async (ctx)=>{
         title,pic,url,sort,status,add_time
     })
     //跳转
-    ctx.redirect(ctx.state.__HOST__+'/admin/focus');
+    ctx.redirect(ctx.state.__HOST__+'/koa2/admin/focus');
 
 
 })
@@ -128,7 +128,7 @@ router.post('/doEdit',tools.multer().single('pic'),async (ctx)=>{
         ctx.redirect(prevPage);
     }else{
         //跳转
-        ctx.redirect(ctx.state.__HOST__+'/admin/focus');
+        ctx.redirect(ctx.state.__HOST__+'/koa2/admin/focus');
 
     }
 

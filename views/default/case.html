@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <title>成功案例</title>
 <title>heder_nav-menu</title>
-<link rel="stylesheet" type="text/css" href="default/css/reset.css" />
-<link rel="stylesheet" type="text/css" href="default/css/common.css" />
-<link rel="stylesheet" type="text/css" href="default/css/heder_nav-menu.css"/>
-<link rel="stylesheet" type="text/css" href="default/css/successful_case.css"/>
+<link rel="stylesheet" type="text/css" href="/default/css/reset.css" />
+<link rel="stylesheet" type="text/css" href="/default/css/common.css" />
+<link rel="stylesheet" type="text/css" href="/default/css/heder_nav-menu.css"/>
+<link rel="stylesheet" type="text/css" href="/default/css/successful_case.css"/>
 
-    <link rel="stylesheet" type="text/css" href="default/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/default/css/bootstrap.min.css"/>
 
 
 </head>
@@ -35,7 +35,7 @@ APP开发</span></h2>
 
     <div class="header_cate">
 		{{each catelist}}
-        		<a {{if pid==$value._id}}class="active"{{/if}} href="/case?pid={{@$value._id}}">{{$value.title}}</a>
+        		<a {{if pid==$value._id}}class="active"{{/if}} href="/koa2/case?pid={{@$value._id}}">{{$value.title}}</a>
 		{{/each}}
     </div>
 
@@ -53,7 +53,7 @@ APP开发</span></h2>
 	    
 				<li>
 
-						<a href="content/{{@$value._id}}"><img src="{{$value.img_url}}" /></a>
+						<a href="content/{{@$value._id}}"><img src="/{{$value.img_url}}" /></a>
 
 						<p>{{$value.title}}</p>
 
@@ -106,10 +106,10 @@ APP开发</span></h2>
 
             if(type=='change'){
                  {{if pid}}
-                     location.href="/case?pid={{pid}}&page="+num;
+                     location.href="/koa2/case?pid={{pid}}&page="+num;
 
                  {{else}}
-                      location.href="/case?page="+num;
+                      location.href="/koa2/case?page="+num;
                  {{/if}}
             }
         }

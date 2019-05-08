@@ -67,7 +67,7 @@ router.post('/doAdd',async (ctx)=>{
     var result=await DB.insert('articlecate',addData);
 
 
-    ctx.redirect(ctx.state.__HOST__+'/admin/articlecate');
+    ctx.redirect(ctx.state.__HOST__+'/koa2/admin/articlecate');
 
 })
 
@@ -107,7 +107,7 @@ router.post('/doEdit',async (ctx)=>{
         title,pid,keywords,status,description
     });
 
-    ctx.redirect(ctx.state.__HOST__+'/admin/articlecate');
+    ctx.redirect(ctx.state.__HOST__+'/koa2/admin/articlecate');
 
 })
 

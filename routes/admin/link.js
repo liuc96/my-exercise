@@ -71,7 +71,7 @@ router.post('/doAdd',tools.multer().single('pic'),async (ctx)=>{
         title,pic,url,sort,status,add_time
     })
     //跳转
-    ctx.redirect(ctx.state.__HOST__+'/admin/link');
+    ctx.redirect(ctx.state.__HOST__+'/koa2/admin/link');
 
 
 })

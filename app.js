@@ -51,13 +51,17 @@ render(app, {
 app.use(static(__dirname + '/public'));
 
 //引入模块
-var index=require('./routes/index.js');
+var index=require('./routes/root.js');
+var demo=require('./routes/demo.js');
+var koa2Index=require('./routes/index.js');
 var api=require('./routes/api.js');
-var admin=require('./routes/admin.js');
+var koa2admin=require('./routes/admin.js');
 var loophot=require('./routes/loophot.js');
 
 router.use(index);
-router.use('/admin',admin);
+router.use('/demo',demo);
+router.use('/koa2',koa2Index);
+router.use('/koa2/admin',koa2admin);
 router.use('/api',api);
 router.use('/loophot',loophot);
 app.use(router.routes());   /*启动路由*/

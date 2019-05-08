@@ -150,7 +150,7 @@ router.post('/doAdd', upload.single('img_url'),async (ctx)=>{
     var result=DB.insert('article',json);
 
     //跳转
-    ctx.redirect(ctx.state.__HOST__+'/admin/article');
+    ctx.redirect(ctx.state.__HOST__+'/koa2/admin/article');
 
 
 

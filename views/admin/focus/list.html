@@ -109,7 +109,7 @@
 											<div class="visible-md visible-lg hidden-sm hidden-xs btn-group center">
 
 
-												<a href="{{__HOST__}}/admin/focus/edit?id={{@$value._id}}">
+												<a href="{{__HOST__}}/koa2/admin/focus/edit?id={{@$value._id}}">
 
 													<button class="btn btn-xs btn-info">
 														<i class="icon-edit bigger-120"></i>
@@ -117,7 +117,7 @@
 												</a>
 
 
-											  	<a class="delete" href="{{__HOST__}}/admin/remove?collection=focus&id={{@$value._id}}">
+											  	<a class="delete" href="{{__HOST__}}/koa2/admin/remove?collection=focus&id={{@$value._id}}">
 
 
 
@@ -164,7 +164,7 @@
 				currentPage: {{page}},
 				onPageChange: function (num, type) {
 					if(type=='change'){
-						location.href="{{__HOST__}}/admin/focus?page="+num;
+						location.href="{{__HOST__}}/koa2/admin/focus?page="+num;
 					}
 				}
 			});

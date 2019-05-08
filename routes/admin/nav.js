@@ -41,7 +41,7 @@ router.post('/doAdd',async (ctx)=>{
     await  DB.insert('nav',{title,url,sort,status,add_time});
 
     //跳转
-    ctx.redirect(ctx.state.__HOST__+'/admin/nav');
+    ctx.redirect(ctx.state.__HOST__+'/koa2/admin/nav');
 
 
 })
@@ -86,7 +86,7 @@ router.post('/doEdit',async (ctx)=>{
         ctx.redirect(prevPage);
     }else{
         //跳转
-        ctx.redirect(ctx.state.__HOST__+'/admin/nav');
+        ctx.redirect(ctx.state.__HOST__+'/koa2/admin/nav');
 
     }
 

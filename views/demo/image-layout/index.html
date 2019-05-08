@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box {
+
+            background: #eee;
+            text-align: left;
+            margin-bottom: 30px;
+        }
+
+        .box img {
+            vertical-align: top;
+            width: 200px;
+            height: 200px;
+            background: #cd0000;
+        }
+
+
+        .img1 {
+            /* 不保持纵横比缩放图片，使图片完全适应 */
+            object-fit: fill;
+        }
+
+        .img2 {
+            /* 保持纵横比缩放图片，只保证图片的短边能完全显示出来 */
+            object-fit: cover;
+        }
+
+        .img3 {
+            /* 保持纵横比缩放图片，使图片的长边能完全显示出来 */
+            object-fit: contain;
+        }
+
+        /* ------------------------------------分界线------------------------------------ */
+
+        .img4 {
+            /* 不缩放图片，只显示图片的中间区域 */
+            object-fit: none;
+        }
+
+        .img5 {
+            /* 不缩放图片，只显示图片的顶部区域 */
+            object-fit: none;
+            object-position: 50% 0;
+        }
+
+        .img6 {
+            /* 不缩放图片，只显示图片的右部区域 */
+            object-fit: none;
+            object-position: 100% 50%;
+        }
+
+        .img7 {
+            /* 不缩放图片，只显示图片的底部区域 */
+            object-fit: none;
+            object-position: 50% 100%;
+        }
+
+        .img8 {
+            /* 不缩放图片，只显示图片的左部区域 */
+            object-fit: none;
+            object-position: 0% 50%;
+        }
+
+        /* ------------------------------------分界线------------------------------------ */
+
+        .img9 {
+            /* 不缩放图片，只显示图片的左上部区域 */
+            object-fit: none;
+            object-position: 0 0;
+        }
+
+        .img10 {
+            /* 不缩放图片，只显示图片的右上部区域 */
+            object-fit: none;
+            object-position: 100% 0;
+        }
+
+        .img11 {
+            /* 不缩放图片，只显示图片的右下部区域 */
+            object-fit: none;
+            object-position: 100% 100%;
+        }
+
+        .img12 {
+            /* 不缩放图片，只显示图片的左下部区域 */
+            object-fit: none;
+            object-position: 0 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="/demo/image-layout/cat.jpg" alt="">
+    <br>
+    <br>
+    <br> 不保持纵横比缩放图片，使图片完全适应
+    <div class="box">
+        <img class="img1" src="/demo/image-layout/cat.jpg" alt="">
+    </div>
+
+    保持纵横比缩放图片，只保证图片的短边能完全显示出来
+    <div class="box">
+        <img class="img2" src="/demo/image-layout/cat.jpg" alt="">
+    </div>
+
+    保持纵横比缩放图片，使图片的长边能完全显示出来
+    <div class="box">
+        <img class="img3" src="/demo/image-layout/cat.jpg" alt="">
+    </div>
+
+    <!-- ------------------------------------分界线------------------------------------ -->
+
+    不缩放图片，只显示图片的中间区域
+    <div class="box">
+        <img class="img4" src="/demo/image-layout/cat.jpg" alt="">
+    </div>
+
+    不缩放图片，只显示图片的顶部区域
+    <div class="box">
+        <img class="img5" src="/demo/image-layout/cat.jpg" alt="">
+    </div>
+
+    不缩放图片，只显示图片的右部区域
+    <div class="box">
+        <img class="img6" src="/demo/image-layout/cat.jpg" alt="">
+    </div>
+
+    不缩放图片，只显示图片的底部区域
+    <div class="box">
+        <img class="img7" src="/demo/image-layout/cat.jpg" alt="">
+    </div>
+
+    不缩放图片，只显示图片的左部区域
+    <div class="box">
+        <img class="img8" src="/demo/image-layout/cat.jpg" alt="">
+    </div>
+
+    <!-- ------------------------------------分界线------------------------------------ -->
+
+    不缩放图片，只显示图片的左上部区域
+    <div class="box">
+        <img class="img9" src="/demo/image-layout/cat.jpg" alt="">
+    </div>
+
+
+    不缩放图片，只显示图片的右上部区域
+    <div class="box">
+        <img class="img10" src="/demo/image-layout/cat.jpg" alt="">
+    </div>
+
+
+    不缩放图片，只显示图片的右下部区域
+    <div class="box">
+        <img class="img11" src="/demo/image-layout/cat.jpg" alt="">
+    </div>
+
+
+    不缩放图片，只显示图片的左下部区域
+    <div class="box">
+        <img class="img12" src="/demo/image-layout/cat.jpg" alt="">
+    </div>
+</body>
+
+</html>

@@ -48,7 +48,7 @@
 
 				$('#code').click(function(){
 
-					$(this).attr('src','{{__ROOT__}}/admin/login/code?t='+Math.random()*1000)
+					$(this).attr('src','{{__ROOT__}}/koa2/admin/login/code?t='+Math.random()*1000)
 				})
 
 				$("#loginForm").submit(function(){
@@ -84,7 +84,7 @@
 
 											<div class="space-6"></div>
 
-											<form action="{{__HOST__}}/admin/login/doLogin" method="post" id="loginForm">
+											<form action="{{__HOST__}}/koa2/admin/login/doLogin" method="post" id="loginForm">
 												<fieldset>
 													<label class="block clearfix">
 														<span class="block input-icon input-icon-right">
@@ -103,7 +103,7 @@
 													<label class="block clearfix">
 														<span class="block input-icon input-icon-right">
 															<input type="text" class="form-control" placeholder="验证吗" name="code" style="width:200px;float:left;" />
-															<img id="code" src="{{__ROOT__}}/admin/login/code" alt="">
+															<img id="code" src="{{__ROOT__}}/koa2/admin/login/code" alt="">
 														</span>
 													</label>
 

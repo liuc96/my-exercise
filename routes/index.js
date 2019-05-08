@@ -26,7 +26,7 @@ router.use(async (ctx, next) => {
   await next()
 })
 
-router.get('/koa2Demo', async (ctx) => {
+router.get('/', async (ctx) => {
   // ctx.body="前台首页";
 
   // 轮播图  注意状态数据不一致问题  建议在后台增加数据的时候状态 转化成number类型

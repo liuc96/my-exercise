@@ -125,13 +125,13 @@
 											{{/if}}
 										</td>
 										<td>
-											<a href="{{__ROOT__}}/admin/article/edit?id={{@$value._id}}">
+											<a href="{{__ROOT__}}/koa2/admin/article/edit?id={{@$value._id}}">
 												<button class="btn btn-xs btn-info">
 													<i class="icon-edit bigger-120"></i>
 												</button>
 											</a>
 											&nbsp;&nbsp;
-											<a class="delete" href="{{__ROOT__}}/admin/remove?collection=article&id={{@$value._id}}">
+											<a class="delete" href="{{__ROOT__}}/koa2/admin/remove?collection=article&id={{@$value._id}}">
 												<button class="btn btn-xs btn-danger">
 													<i class="icon-trash bigger-120"></i>
 												</button>
@@ -175,7 +175,7 @@
 				console.log(num, type);
 //
 				if(type=='change'){
-					location.href="{{__HOST__}}/admin/article?page="+num;
+					location.href="{{__HOST__}}/koa2/admin/article?page="+num;
 				}
 			}
 		});

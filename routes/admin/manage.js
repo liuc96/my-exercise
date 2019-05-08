@@ -46,14 +46,14 @@ router.post('/doAdd',async (ctx)=>{
 
         await ctx.render('admin/error',{
             message:'用户名不合法',
-            redirect:ctx.state.__HOST__+'/admin/manage/add'
+            redirect:ctx.state.__HOST__+'/koa2/admin/manage/add'
         })
 
     }else if(password!=rpassword ||password.length>6){
 
            await ctx.render('admin/error',{
                 message:'密码和确认密码不一致，或者密码长度小于6位',
-                redirect:ctx.state.__HOST__+'/admin/manage/add'
+                redirect:ctx.state.__HOST__+'/koa2/admin/manage/add'
             })
 
     }else{
@@ -66,7 +66,7 @@ router.post('/doAdd',async (ctx)=>{
 
             await  ctx.render('admin/error',{
                 message:'次管理员已经存在，请换个用户名',
-                redirect:ctx.state.__HOST__+'/admin/manage/add'
+                redirect:ctx.state.__HOST__+'/koa2/admin/manage/add'
             })
 
         }else{
@@ -74,7 +74,7 @@ router.post('/doAdd',async (ctx)=>{
             //增加管理员
            var addResult =await  DB.insert('admin',{"username":username,"password":tools.md5(password),"status":1,"last_time":''});
 
-           ctx.redirect(ctx.state.__HOST__+'/admin/manage');
+           ctx.redirect(ctx.state.__HOST__+'/koa2/admin/manage');
 
         }
 
@@ -114,24 +114,24 @@ router.post('/doEdit',async (ctx)=>{
 
                   await ctx.render('admin/error',{
                       message:'密码和确认密码不一致，或者密码长度小于6位',
-                      redirect:ctx.state.__HOST__+'/admin/manage/edit?id='+id
+                      redirect:ctx.state.__HOST__+'/koa2/admin/manage/edit?id='+id
                   })
 
               }else{
 
                   //更新密码
                   var updateResult=await DB.update('admin',{"_id":DB.getObjectId(id)},{"password":tools.md5(password)});
-                  ctx.redirect(ctx.state.__HOST__+'/admin/manage');
+                  ctx.redirect(ctx.state.__HOST__+'/koa2/admin/manage');
               }
           }else{
 
-              ctx.redirect(ctx.state.__HOST__+'/admin/manage');
+              ctx.redirect(ctx.state.__HOST__+'/koa2/admin/manage');
           }
 
       }catch(err){
           await ctx.render('admin/error',{
               message:err,
-              redirect:ctx.state.__HOST__+'/admin/manage/edit?id='+id
+              redirect:ctx.state.__HOST__+'/koa2/admin/manage/edit?id='+id
           })
 
       }

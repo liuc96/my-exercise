@@ -31,10 +31,10 @@ router.use(async (ctx, next) => {
     // 配置全局信息
     await next()
   } else { // 没有登录跳转到登录页面
-    if (pathname == 'admin/login' || pathname == 'admin/login/doLogin' || pathname == 'admin/login/code') {
+    if (pathname == 'koa2/admin/login' || pathname == 'koa2/admin/login/doLogin' || pathname == 'koa2/admin/login/code') {
       await next()
     } else {
-      ctx.redirect('/admin/login')
+      ctx.redirect('/koa2/admin/login')
     }
   }
 })

@@ -2,16 +2,16 @@
  * Created by Administrator on 2018/3/21 0021.
  */
 var md5 = require('md5');
-//上传图片的模块
+//锟较达拷图片锟斤拷模锟斤拷
 const multer = require('koa-multer');
 let tools={
-    multer(){  /*上传图片的配置*/
+    multer(){  /*锟较达拷图片锟斤拷锟斤拷锟斤拷*/
         var storage = multer.diskStorage({
             destination: function (req, file, cb) {
                 cb(null, 'public/upload')
             },
             filename: function (req, file, cb) {
-                var fileFormat = (file.originalname).split(".");   /*获取后缀名  分割数组*/
+                var fileFormat = (file.originalname).split(".");   /*锟斤拷取锟斤拷缀锟斤拷  锟街革拷锟斤拷锟斤拷*/
                 cb(null,Date.now() + "." + fileFormat[fileFormat.length - 1]);
             }
         })
@@ -28,9 +28,6 @@ let tools={
     },
     cateToList(data){
 
-
-        //1、获取一级分类
-
         var firstArr=[];
 
         for(var i=0;i<data.length;i++){
@@ -38,13 +35,11 @@ let tools={
                 firstArr.push(data[i]);
             }
         }
-        //2、获取二级分类
-        //console.log(firstArr);
 
         for(var i=0;i<firstArr.length;i++){
 
             firstArr[i].list=[];
-            //遍历所有的数据  看那个数据的pid等于当前的数据_id
+            //锟斤拷锟斤拷锟斤拷锟叫碉拷锟斤拷锟斤拷  锟斤拷锟角革拷锟斤拷锟捷碉拷pid锟斤拷锟节碉拷前锟斤拷锟斤拷锟斤拷_id
             for(var j=0;j<data.length;j++){
                 if(firstArr[i]._id==data[j].pid){
                     firstArr[i].list.push(data[j]);
