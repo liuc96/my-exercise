@@ -12,7 +12,7 @@ router.use(async (ctx, next) => {
   // console.log(ctx.request.header.host);
 
   // 模板引擎配置全局的变量
-  ctx.state.__HOST__ = 'http://' + ctx.request.header.host
+  ctx.state.__HOST__ = 'https://' + ctx.request.header.host
   // console.log(ctx.request.url);  //   /admin/user
   //  /admin/login/code?t=709.0399997523431
   var pathname = url.parse(ctx.request.url).pathname.substring(1)
