@@ -1,4 +1,3 @@
-
 const router = require('koa-router')()
 const url = require('url')
 
@@ -11,10 +10,8 @@ router.use(async (ctx, next) => {
   await next()
 })
 
-const imageLayout = require('./demo/image-layout.js')
-const canvas = require('./demo/canvas.js')
+const markDown = require('./notes/Markdown')
 
-router.use('/image-layout', imageLayout)
-router.use('/canvas', canvas)
+router.use('/Markdown', markDown)
 
 module.exports = router.routes()

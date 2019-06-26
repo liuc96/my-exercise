@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MarkDown</title>
+  </head>
+  <style>
+    body {
+      margin: 0 auto;
+      font-family: 'Microsoft YaHei', arial, sans-serif;
+      color: #444444;
+      line-height: 1;
+      padding: 30px;
+    }
+    @media screen and (min-width: 768px) {
+      body {
+        width: 748px;
+        margin: 10px auto;
+      }
+    }
+    h1,
+    h2,
+    h3,
+    h4 {
+      color: #111111;
+      font-weight: 400;
+      margin-top: 1em;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      font-family: Georgia, Palatino, serif;
+    }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    p,
+    dl {
+      margin-bottom: 16px;
+      padding: 0;
+    }
+    h1 {
+      font-size: 48px;
+      line-height: 54px;
+    }
+    h2 {
+      font-size: 36px;
+      line-height: 42px;
+    }
+    h1,
+    h2 {
+      padding-bottom: 10px;
+    }
+    h3 {
+      font-size: 24px;
+      line-height: 30px;
+    }
+    h4 {
+      font-size: 21px;
+      line-height: 26px;
+    }
+    h5 {
+      font-size: 18px;
+      list-style: 23px;
+    }
+    a {
+      color: #0099ff;
+      margin: 0;
+      padding: 0;
+      vertical-align: baseline;
+    }
+    a:hover {
+      text-decoration: none;
+      color: #ff6600;
+    }
+    a:visited {
+      /*color: purple;*/
+    }
+    ul,
+    ol {
+      padding: 0;
+      padding-left: 24px;
+      margin: 0;
+    }
+    li {
+      line-height: 24px;
+    }
+    p,
+    ul,
+    ol {
+      font-size: 16px;
+      line-height: 24px;
+    }
+
+    ol ol,
+    ul ol {
+      list-style-type: lower-roman;
+    }
+
+    /*pre {
+    padding: 0px 24px;
+    max-width: 800px;
+    white-space: pre-wrap;
+}
+code {
+    font-family: Consolas, Monaco, Andale Mono, monospace;
+    line-height: 1.5;
+    font-size: 13px;
+}*/
+
+    code,
+    pre {
+      border-radius: 3px;
+      background-color: #f7f7f7;
+      color: inherit;
+    }
+
+    code {
+      font-family: Consolas, Monaco, Andale Mono, monospace;
+      margin: 0 2px;
+    }
+
+    pre {
+      line-height: 1.7em;
+      overflow: auto;
+      padding: 6px 10px;
+      border-left: 5px solid #6ce26c;
+    }
+
+    pre > code {
+      border: 0;
+      display: inline;
+      max-width: initial;
+      padding: 0;
+      margin: 0;
+      overflow: initial;
+      line-height: inherit;
+      font-size: 0.85em;
+      white-space: pre;
+      background: 0 0;
+    }
+
+    code {
+      color: #666555;
+    }
+
+    /** markdown preview plus 对于代码块的处理有些问题, 所以使用统一的颜色 */
+    /*code .keyword {
+  color: #8959a8;
+}
+
+code .number {
+  color: #f5871f;
+}
+
+code .comment {
+  color: #998
+}*/
+
+    aside {
+      display: block;
+      float: right;
+      width: 390px;
+    }
+    blockquote {
+      border-left: 0.5em solid #eee;
+      padding: 0 0 0 2em;
+      margin-left: 0;
+    }
+    blockquote cite {
+      font-size: 14px;
+      line-height: 20px;
+      color: #bfbfbf;
+    }
+    blockquote cite:before {
+      content: '\2014 \00A0';
+    }
+
+    blockquote p {
+      color: #666;
+    }
+    hr {
+      text-align: left;
+      color: #999;
+      height: 2px;
+      padding: 0;
+      margin: 16px 0;
+      background-color: #e7e7e7;
+      border: 0 none;
+    }
+
+    dl {
+      padding: 0;
+    }
+
+    dl dt {
+      padding: 10px 0;
+      margin-top: 16px;
+      font-size: 1em;
+      font-style: italic;
+      font-weight: bold;
+    }
+
+    dl dd {
+      padding: 0 16px;
+      margin-bottom: 16px;
+    }
+
+    dd {
+      margin-left: 0;
+    }
+
+    /* Code below this line is copyright Twitter Inc. */
+
+    button,
+    input,
+    select,
+    textarea {
+      font-size: 100%;
+      margin: 0;
+      vertical-align: baseline;
+      *vertical-align: middle;
+    }
+    button,
+    input {
+      line-height: normal;
+      *overflow: visible;
+    }
+    button::-moz-focus-inner,
+    input::-moz-focus-inner {
+      border: 0;
+      padding: 0;
+    }
+    button,
+    input[type='button'],
+    input[type='reset'],
+    input[type='submit'] {
+      cursor: pointer;
+      -webkit-appearance: button;
+    }
+    input[type='checkbox'],
+    input[type='radio'] {
+      cursor: pointer;
+    }
+    /* override default chrome & firefox settings */
+    input:not([type='image']),
+    textarea {
+      -webkit-box-sizing: content-box;
+      -moz-box-sizing: content-box;
+      box-sizing: content-box;
+    }
+
+    input[type='search'] {
+      -webkit-appearance: textfield;
+      -webkit-box-sizing: content-box;
+      -moz-box-sizing: content-box;
+      box-sizing: content-box;
+    }
+    input[type='search']::-webkit-search-decoration {
+      -webkit-appearance: none;
+    }
+    label,
+    input,
+    select,
+    textarea {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 13px;
+      font-weight: normal;
+      line-height: normal;
+      margin-bottom: 18px;
+    }
+    input[type='checkbox'],
+    input[type='radio'] {
+      cursor: pointer;
+      margin-bottom: 0;
+    }
+    input[type='text'],
+    input[type='password'],
+    textarea,
+    select {
+      display: inline-block;
+      width: 210px;
+      padding: 4px;
+      font-size: 13px;
+      font-weight: normal;
+      line-height: 18px;
+      height: 18px;
+      color: #808080;
+      border: 1px solid #ccc;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      border-radius: 3px;
+    }
+    select,
+    input[type='file'] {
+      height: 27px;
+      line-height: 27px;
+    }
+    textarea {
+      height: auto;
+    }
+    /* grey out placeholders */
+    :-moz-placeholder {
+      color: #bfbfbf;
+    }
+    ::-webkit-input-placeholder {
+      color: #bfbfbf;
+    }
+    input[type='text'],
+    input[type='password'],
+    select,
+    textarea {
+      -webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
+      -moz-transition: border linear 0.2s, box-shadow linear 0.2s;
+      transition: border linear 0.2s, box-shadow linear 0.2s;
+      -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+      -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+    input[type='text']:focus,
+    input[type='password']:focus,
+    textarea:focus {
+      outline: none;
+      border-color: rgba(82, 168, 236, 0.8);
+      -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1),
+        0 0 8px rgba(82, 168, 236, 0.6);
+      -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1),
+        0 0 8px rgba(82, 168, 236, 0.6);
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1),
+        0 0 8px rgba(82, 168, 236, 0.6);
+    }
+    /* buttons */
+    button {
+      display: inline-block;
+      padding: 4px 14px;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 13px;
+      line-height: 18px;
+      -webkit-border-radius: 4px;
+      -moz-border-radius: 4px;
+      border-radius: 4px;
+      -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        0 1px 2px rgba(0, 0, 0, 0.05);
+      -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        0 1px 2px rgba(0, 0, 0, 0.05);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        0 1px 2px rgba(0, 0, 0, 0.05);
+      background-color: #0064cd;
+      background-repeat: repeat-x;
+      background-image: -khtml-gradient(
+        linear,
+        left top,
+        left bottom,
+        from(#049cdb),
+        to(#0064cd)
+      );
+      background-image: -moz-linear-gradient(top, #049cdb, #0064cd);
+      background-image: -ms-linear-gradient(top, #049cdb, #0064cd);
+      background-image: -webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0%, #049cdb),
+        color-stop(100%, #0064cd)
+      );
+      background-image: -webkit-linear-gradient(top, #049cdb, #0064cd);
+      background-image: -o-linear-gradient(top, #049cdb, #0064cd);
+      background-image: linear-gradient(top, #049cdb, #0064cd);
+      color: #fff;
+      text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+      border: 1px solid #004b9a;
+      border-bottom-color: #003f81;
+      -webkit-transition: 0.1s linear all;
+      -moz-transition: 0.1s linear all;
+      transition: 0.1s linear all;
+      border-color: #0064cd #0064cd #003f81;
+      border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    }
+    button:hover {
+      color: #fff;
+      background-position: 0 -15px;
+      text-decoration: none;
+    }
+    button:active {
+      -webkit-box-shadow: inset 0 3px 7px rgba(0, 0, 0, 0.15),
+        0 1px 2px rgba(0, 0, 0, 0.05);
+      -moz-box-shadow: inset 0 3px 7px rgba(0, 0, 0, 0.15),
+        0 1px 2px rgba(0, 0, 0, 0.05);
+      box-shadow: inset 0 3px 7px rgba(0, 0, 0, 0.15),
+        0 1px 2px rgba(0, 0, 0, 0.05);
+    }
+    button::-moz-focus-inner {
+      padding: 0;
+      border: 0;
+    }
+    table {
+      *border-collapse: collapse; /* IE7 and lower */
+      border-spacing: 0;
+      width: 100%;
+    }
+    table {
+      border: solid #ccc 1px;
+      -moz-border-radius: 6px;
+      -webkit-border-radius: 6px;
+      border-radius: 6px;
+      /*-webkit-box-shadow: 0 1px 1px #ccc;
+    -moz-box-shadow: 0 1px 1px #ccc;
+    box-shadow: 0 1px 1px #ccc;   */
+    }
+    table tr:hover {
+      background: #fbf8e9;
+      -o-transition: all 0.1s ease-in-out;
+      -webkit-transition: all 0.1s ease-in-out;
+      -moz-transition: all 0.1s ease-in-out;
+      -ms-transition: all 0.1s ease-in-out;
+      transition: all 0.1s ease-in-out;
+    }
+    table td,
+    .table th {
+      border-left: 1px solid #ccc;
+      border-top: 1px solid #ccc;
+      padding: 10px;
+      text-align: left;
+    }
+
+    table th {
+      background-color: #dce9f9;
+      background-image: -webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        from(#ebf3fc),
+        to(#dce9f9)
+      );
+      background-image: -webkit-linear-gradient(top, #ebf3fc, #dce9f9);
+      background-image: -moz-linear-gradient(top, #ebf3fc, #dce9f9);
+      background-image: -ms-linear-gradient(top, #ebf3fc, #dce9f9);
+      background-image: -o-linear-gradient(top, #ebf3fc, #dce9f9);
+      background-image: linear-gradient(top, #ebf3fc, #dce9f9);
+      /*-webkit-box-shadow: 0 1px 0 rgba(255,255,255,.8) inset;
+    -moz-box-shadow:0 1px 0 rgba(255,255,255,.8) inset;
+    box-shadow: 0 1px 0 rgba(255,255,255,.8) inset;*/
+      border-top: none;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+      padding: 5px;
+    }
+
+    table td:first-child,
+    table th:first-child {
+      border-left: none;
+    }
+
+    table th:first-child {
+      -moz-border-radius: 6px 0 0 0;
+      -webkit-border-radius: 6px 0 0 0;
+      border-radius: 6px 0 0 0;
+    }
+    table th:last-child {
+      -moz-border-radius: 0 6px 0 0;
+      -webkit-border-radius: 0 6px 0 0;
+      border-radius: 0 6px 0 0;
+    }
+    table th:only-child {
+      -moz-border-radius: 6px 6px 0 0;
+      -webkit-border-radius: 6px 6px 0 0;
+      border-radius: 6px 6px 0 0;
+    }
+    table tr:last-child td:first-child {
+      -moz-border-radius: 0 0 0 6px;
+      -webkit-border-radius: 0 0 0 6px;
+      border-radius: 0 0 0 6px;
+    }
+    table tr:last-child td:last-child {
+      -moz-border-radius: 0 0 6px 0;
+      -webkit-border-radius: 0 0 6px 0;
+      border-radius: 0 0 6px 0;
+    }
+  </style>
+  <body>
+    <div onclick="input()">
+      <div id="result"></div>
+    </div>
+
+    <textarea
+      id="oriContent"
+      style="height:400px;width:600px;display:none"
+      onkeyup="convert()"
+      value=""
+    >
+>原作者：高鸿祥<br />
+转载自：[https://www.jianshu.com/p/191d1e21f7ed](https://www.jianshu.com/p/191d1e21f7ed)<br />
+
+Markdown是一种纯文本格式的标记语言。通过简单的标记语法，它可以使普通文本内容具有一定的格式。<br />
+相比WYSIWYG编辑器
+
+**优点：**<br />
+1、因为是纯文本，所以只要支持Markdown的地方都能获得一样的编辑效果，可以让作者摆脱排版的困扰，专心写作。<br />
+2、操作简单。比如:WYSIWYG编辑时标记个标题，先选中内容，再点击导航栏的标题按钮，选择几级标题。要三个步骤。而Markdown只需要在标题内容前加#即可
+
+**缺点:**<br />
+1、需要记一些语法（当然，是很简单。五分钟学会）。<br />
+2、有些平台不支持Markdown编辑模式。
+
+---
+###**一、标题**
+在想要设置为标题的文字前面加#来表示
+一个#是一级标题，二个#是二级标题，以此类推。支持六级标题。
+
+示例：
+```
+# 这是一级标题
+## 这是二级标题
+### 这是三级标题
+#### 这是四级标题
+##### 这是五级标题
+###### 这是六级标题
+```
+效果如下：
+# 这是一级标题
+## 这是二级标题
+### 这是三级标题
+#### 这是四级标题
+##### 这是五级标题
+###### 这是六级标题
+
+---
+###**二、字体**
+- **加粗**
+
+要加粗的文字左右分别用两个*号包起来
+- **斜体**
+
+要倾斜的文字左右分别用一个*号包起来
+- **倾斜加粗**
+
+要倾斜和加粗的文字左右分别用三个*号包起来
+- **删除线**
+
+要加删除线的文字左右分别用两个~~号包起来
+
+示例：
+
+```
+**这是加粗的文字**
+*这是倾斜的文字*`
+***这是斜体加粗的文字***
+~~这是加删除线的文字~~
+```
+
+效果如下：
+
+**这是加粗的文字**
+
+*这是倾斜的文字*`
+
+***这是斜体加粗的文字***
+
+~~这是加删除线的文字~~
+
+---
+###**三、引用**
+
+在引用的文字前加>即可。引用也可以嵌套，如加两个>>三个>>>
+n个...
+
+貌似可以一直加下去，但没神马卵用
+
+示例：
+
+```
+>这是引用的内容
+>>这是引用的内容
+>>>>>>>>>>这是引用的内容
+```
+
+效果如下：
+
+>这是引用的内容
+>>这是引用的内容
+>>>>>>>>>>这是引用的内容
+
+---
+###**四、分割线**
+
+三个或者三个以上的 - 或者 * 都可以。
+
+示例：
+
+```
+---
+----
+***
+*****
+```
+
+效果如下：
+
+可以看到，显示效果是一样的。
+
+******
+********
+***
+******
+###**五、图片**
+
+语法：
+
+```
+![图片alt](图片地址 ''图片title'')
+
+图片alt就是显示在图片下面的文字，相当于对图片内容的解释。
+图片title是图片的标题，当鼠标移到图片上时显示的内容。title可加可不加
+```
+
+示例：
+
+```
+![blockchain](https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/
+u=702257389,1274025419&fm=27&gp=0.jpg "区块链")
+```
+
+效果如下：
+
+![blockchain](https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=702257389,1274025419&fm=27&gp=0.jpg "区块链")
+
+---
+###**六、超链接**
+
+语法：
+
+```
+[超链接名](超链接地址 "超链接title")
+title可加可不加
+```
+
+示例：
+
+```
+[简书](https://jianshu.com)
+[百度](https://baidu.com)
+```
+效果如下：
+
+[简书](https://jianshu.com)
+[百度](https://baidu.com)
+
+---
+###**七、列表**
+- **无序列表**
+
+语法：<br />
+无序列表用 - + * 任何一种都可以
+```
+- 列表内容
++ 列表内容
+* 列表内容
+
+注意：- + * 跟内容之间都要有一个空格
+```
+效果如下：
+
+- 列表内容
++ 列表内容
+* 列表内容
+
+- **有序列表**
+
+语法：<br />
+数字加点
+```
+1.列表内容
+2.列表内容
+3.列表内容
+
+注意：序号跟内容之间要有空格
+```
+
+效果如下：
+1. 列表内容
+2. 列表内容
+3. 列表内容
+
+- **列表嵌套**
+
+**上一级和下一级之间敲四个空格即可**
+
+- 一级无序列表内容
+    - 二级无序列表内容
+    - 二级无序列表内容
+    - 二级无序列表内容
+- 一级无序列表内容
+    1. 二级有序列表内容
+    2. 二级有序列表内容
+    3. 二级有序列表内容
+1. 一级有序列表内容
+    - 二级无序列表内容
+    - 二级无序列表内容
+    - 二级无序列表内容
+2. 一级有序列表内容
+    1. 二级有序列表内容
+    2. 二级有序列表内容
+    3. 二级有序列表内容
+
+---
+###**八、表格**
+
+语法：
+
+```
+表头|表头|表头
+---|:--:|---:
+内容|内容|内容
+内容|内容|内容
+
+第二行分割表头和内容。
+- 有一个就行，为了对齐，多加了几个
+文字默认居左
+-两边加：表示文字居中
+-右边加：表示文字居右
+注：原生的语法两边都要用 | 包起来。此处省略
+```
+
+示例：
+
+```
+姓名|技能|排行
+--|:--:|--:
+刘备|哭|大哥
+关羽|打|二哥
+张飞|骂|三弟
+```
+
+效果如下：
+
+姓名|技能|排行
+--|:--:|--:
+刘备|哭|大哥
+关羽|打|二哥
+张飞|骂|三弟
+
+---
+###**九、代码**
+
+语法：<br />
+单行代码：代码之间分别用一个反引号包起来
+
+```
+`代码内容`
+```
+
+代码块：代码之间分别用三个反引号包起来，且两边的反引号单独占一行
+
+```
+(```)
+  代码...
+  代码...
+  代码...
+(```)
+```
+
+>注：为了防止转译，前后三个反引号处加了小括号，实际是没有的。这里只是用来演示，实际中去掉两边小括号即可。
+
+示例：
+
+单行代码
+
+```
+`create database hero;`
+```
+
+代码块
+
+```
+(```)
+function fun(){
+  echo "这是一句非常牛逼的代码";
+}
+fun();
+(```)
+```
+
+效果如下：
+
+单行代码
+
+`create database hero`
+
+代码块
+
+```
+function fun(){
+  echo "这是一句非常牛逼的代码";
+}
+fun();
+```
+    </textarea>
+    <script type="text/javascript" src="/demo/markDown/showdown.min.js"></script>
+    <script type="text/javascript">
+      var text = document.getElementById('oriContent').value
+      var converter = new showdown.Converter()
+      var html = converter.makeHtml(text)
+      document.getElementById('result').innerHTML = html
+    </script>
+  </body>
+</html>

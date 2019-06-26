@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>canvas粒子特效 demo</title>
+
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="cas"><canvas>  
+  <script>
+    /**
+     * @description 一、创建canvas元素并获取上下文
+     */
+    let canvas = document.getElementById('cas')
+    let ctx = canvas.getContext('2d')
+    let time = null
+    canvas.width = window.innerWidth
+    canvas.height = window.innerHeight
+
+    /**
+     * @description 二、在写具体的逻辑前先让canvas的宽高跟随window变化
+     */
+    window.onresize = function () {
+      clearTimeout(time)
+      time = setTimeout(function () {
+        canvas.width = window.innerWidth
+        canvas.height = window.innerHeight
+        ctx.fillStyle = 'purple'
+      }, 500) // 设置延时执行函数，避免短时间过多的触发dom渲染，提高性能
+    }
+
+    /**
+     * @description
+     * 三、效果的主要运动逻辑
+     */
+    // 1.创建一个小球类 Circle
+    function Circle (
+      x, // 初始横坐标
+      y, // 初始纵坐标
+      xa, // 横向的运行速度，
+      ya, // 纵向的运行速度
+      max // 能够与其他小球之间产生连线效果的极限距离
+    ) {
+      this.x = x
+      this.y = y
+      this.xa = xa
+      this.ya = ya
+      this.max = max
+    }
+
+    // 2.当鼠标在canvas中滑动时也会生成一个小球与canvas中的其他小球产生互动效果
+    let mouse = {
+      x: null,
+      y: null,
+      max: 10000 * 2 // 为了之后的比较方便，取极限距离的平方值10000，取20000是为了连线颜色不要太淡
+    }
+    canvas.onmousemove = function (e) { // 设置鼠标小球的初始坐标
+      mouse.x = e.clientX
+      mouse.y = e.clientY
+    }
+    canvas.onmouseout = function (e) {
+      mouse.x = null
+      mouse.y = null
+    }
+
+    // 3.特效的主要逻辑
+    function init () {
+      let width = canvas.width
+      let height = canvas.height
+      let arr = []
+
+      for (let i = 0; i < 500; i++) { // 初始500个小球
+        let x = Math.random() * width
+        let y = Math.random() * height
+        let xa = Math.random() * 2 - 1
+        let ya = Math.random() * 2 - 1
+        let max = 6000 // 为了之后的比较方便这里直接取极限距离的平方
+        arr.push(new Circle(x, y, xa, ya, max))
+      }
+      return arr
+    }
+
+    let dots = init() // 所有需要计算运动的小球的集合
+
+    if (!window.requestAnimationFrame) { // 兼容requestAnimationFrame
+      window.requestAnimationFrame = function (callback) {
+        setTimeout(callback, 16.7)
+      }
+    }
+
+    function animate () {
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      let ndots = [mouse].concat(dots) // 所有用于比较的小球的集合，包括鼠标移入生成的小球
+      dots.forEach((dot) => {
+        dot.xa *= dot.x + dot.xa > canvas.width || dot.x + dot.xa < 0 ? -1 : 1 // 小球的下一步的运动状态，撞墙则向回运动
+        dot.ya *= dot.y + dot.ya > canvas.height || dot.y + dot.ya < 0 ? -1 : 1
+        dot.x += dot.xa
+        dot.y += dot.ya
+        ctx.fillRect(dot.x, dot.y, 1, 1) // 填充小球
+        ndots.forEach((ndot) => { // 对每一个运动小球需要遍历其他所有的小球与它之间的距离并产生相应的效果
+          if (dot === ndot || ndot.x === null || ndot.y === null) return // 判断是否是小球本身或者不在canvas中的鼠标
+          let xc = dot.x - ndot.x
+          let yc = dot.y - ndot.y
+          let long = xc * xc + yc * yc
+          let radio = long / ndot.max
+
+          if (long < ndot.max) {
+            if (ndot === mouse && long > (ndot.max / 2)) { // 单独判断鼠标
+              dot.x -= xc * 0.01 // 根据mouse.max/2 = 10000,可以判断其他小球与鼠标之间横纵最大距离都为100，所以此时dot.x的最大值为 1，
+              dot.y -= yc * 0.01 // 因为小球的初始速度在 -1~1之间，绝对速度无限接近于1，这样给小球一个往回的速度就能保证“束缚”住小球，产生“束缚“的效果
+            }
+            ctx.strokeStyle = `rgba(30, 144, 255, ${1 - radio})` // 让连线根据两点间的距离产生变化
+            ctx.beginPath()
+            ctx.moveTo(dot.x, dot.y)
+            ctx.lineTo(ndot.x, ndot.y)
+            ctx.stroke() // 绘制连线
+          }
+        })
+        ndots.splice(ndots.indexOf(dot), 1) // 已经比较过的小球从集合中剔除，避免重复遍历
+      })
+      window.requestAnimationFrame(animate)
+    }
+    animate()      
+  </script>
+</body>
+</html>

@@ -51,19 +51,22 @@ render(app, {
 app.use(static(__dirname + '/public'));
 
 //引入模块
-var index=require('./routes/root.js');
-var demo=require('./routes/demo.js');
-var koa2Index=require('./routes/index.js');
-var api=require('./routes/api.js');
-var koa2admin=require('./routes/admin.js');
-var loophot=require('./routes/loophot.js');
+var index=require('./routes/root.js'); // 首页
+var demo=require('./routes/demo.js'); // 案例
+var notes=require('./routes/notes.js'); // 笔记
+var koa2Index=require('./routes/index.js'); // koa2demo首页
+var koa2admin=require('./routes/admin.js'); // koa2demo后台
+var loophot=require('./routes/loophot.js'); // 热商家后台
+var api=require('./routes/api.js'); // API
 
 router.use(index);
 router.use('/demo',demo);
+router.use('/notes',notes);
 router.use('/koa2',koa2Index);
 router.use('/koa2/admin',koa2admin);
 router.use('/api',api);
 router.use('/loophot',loophot);
+
 app.use(router.routes());   /*启动路由*/
 app.use(router.allowedMethods());
 app.listen(8000);
